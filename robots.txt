@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hushfocusmusic.github.io/sitemap.xml
