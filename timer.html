@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hush Focus Music: focus timer with calm sound</title>
+<title>Free Focus Timer with Calm Sound | Hush Focus Music</title>
 <link rel="canonical" href="https://hushfocusmusic.github.io/timer.html">
 <meta name="description" content="A simple focus timer that plays long, seamless focus and sleep sounds from Hush Focus Music. Brown noise, pink noise, ocean waves, fan sounds and calm drones.">
 <style>
@@ -30,12 +30,13 @@ footer{color:var(--muted);font-size:14px;margin-top:40px}
 @media(max-width:520px){h1{font-size:34px}.clock{font-size:68px}}
 .nav{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.09);font:600 15px/1.2 system-ui,sans-serif;max-width:1040px;margin:0 auto}
 .nav a{color:#cfc8e6;text-decoration:none}.nav a:hover,.nav a[aria-current=page]{color:#f5d79a}.nav .brand{font:600 20px/1 Georgia,serif;color:#ede8f5;margin-right:auto}
+@media(max-width:640px){.nav .brand{flex-basis:100%;margin-bottom:4px}}
 </style>
 </head>
 <body>
 <nav class="nav" aria-label="Main"><a class="brand" href="index.html">Hush Focus Music</a><a href="index.html">Home</a><a href="index.html#science">The Science of Sound</a><a href="index.html#listen">Listen</a><a href="timer.html" aria-current="page">Focus timer</a><a href="https://www.youtube.com/@HushFocusMusic">YouTube</a></nav>
 <main>
-<h1>hush</h1>
+<h1>Focus timer</h1>
 <p class="tag">A focus timer with calm sound. Pick a sound, press start, do one thing.</p>
 
 <section class="card" aria-label="Focus timer">
@@ -77,12 +78,12 @@ footer{color:var(--muted);font-size:14px;margin-top:40px}
 </footer>
 </main>
 <script>
-var modes={"25/5":[25,5],"50/10":[50,10],"90/15":[90,15]},mode="25/5",focus=true,left=25*60,tick=null;
+var baseTitle=document.title;var modes={"25/5":[25,5],"50/10":[50,10],"90/15":[90,15]},mode="25/5",focus=true,left=25*60,tick=null;
 var clock=document.getElementById("clock"),phase=document.getElementById("phase"),start=document.getElementById("start");
 function show(){var m=Math.floor(left/60),s=left%60;clock.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
-  phase.textContent=focus?"Focus":"Break";document.title=clock.textContent+" "+phase.textContent+" | Hush";}
+  phase.textContent=focus?"Focus":"Break";document.title=tick?clock.textContent+" "+phase.textContent+" | Hush":baseTitle;}
 function set(){left=modes[mode][focus?0:1]*60;show();}
-function stop(){clearInterval(tick);tick=null;start.textContent="Start";}
+function stop(){clearInterval(tick);tick=null;start.textContent="Start";document.title=baseTitle;}
 start.onclick=function(){if(tick){stop();return;}start.textContent="Pause";
   tick=setInterval(function(){left--;if(left<=0){focus=!focus;set();}else show();},1000);};
 document.getElementById("reset").onclick=function(){stop();focus=true;set();};
