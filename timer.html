@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hush Focus Music: focus timer with calm sound</title>
+<link rel="canonical" href="https://hushfocusmusic.github.io/timer.html">
+<meta name="description" content="A simple focus timer that plays long, seamless focus and sleep sounds from Hush Focus Music. Brown noise, pink noise, ocean waves, fan sounds and calm drones.">
+<style>
+:root{--ground:#12100e;--card:#1b1815;--line:#2c2823;--cream:#ede6d6;--muted:#a59c8c;--tint:#c9a27a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--cream);font:17px/1.6 Georgia,"Iowan Old Style",serif}
+main{max-width:760px;margin:0 auto;padding:48px 22px 80px}
+h1{font-size:44px;line-height:1.1;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.tag{color:var(--muted);margin:0 0 36px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;margin-bottom:22px}
+.clock{font:600 96px/1 ui-monospace,Menlo,monospace;text-align:center;letter-spacing:-.03em;margin:8px 0 4px;font-variant-numeric:tabular-nums}
+.phase{text-align:center;color:var(--tint);text-transform:uppercase;letter-spacing:.14em;font:600 13px/1 system-ui,sans-serif;margin-bottom:22px}
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+button,select{font:600 15px/1 system-ui,sans-serif;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--cream);padding:12px 18px;cursor:pointer}
+button.primary{background:var(--tint);color:#15110d;border-color:var(--tint)}
+button[aria-pressed=true]{border-color:var(--tint);color:var(--tint)}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--tint);outline-offset:3px}
+label{display:block;font:600 13px/1 system-ui,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
+select{width:100%;border-radius:12px;background:var(--ground);margin-bottom:16px}
+.player{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+a{color:var(--tint)}
+footer{color:var(--muted);font-size:14px;margin-top:40px}
+@media(max-width:520px){h1{font-size:34px}.clock{font-size:68px}}
+.nav{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.09);font:600 15px/1.2 system-ui,sans-serif;max-width:1040px;margin:0 auto}
+.nav a{color:#cfc8e6;text-decoration:none}.nav a:hover,.nav a[aria-current=page]{color:#f5d79a}.nav .brand{font:600 20px/1 Georgia,serif;color:#ede8f5;margin-right:auto}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main"><a class="brand" href="index.html">Hush Focus Music</a><a href="index.html">Home</a><a href="index.html#science">The Science of Sound</a><a href="index.html#listen">Listen</a><a href="timer.html" aria-current="page">Focus timer</a><a href="https://www.youtube.com/@HushFocusMusic">YouTube</a></nav>
+<main>
+<h1>hush</h1>
+<p class="tag">A focus timer with calm sound. Pick a sound, press start, do one thing.</p>
+
+<section class="card" aria-label="Focus timer">
+  <div class="phase" id="phase">Focus</div>
+  <div class="clock" id="clock" role="timer" aria-live="off">25:00</div>
+  <div class="row" style="margin:22px 0 14px">
+    <button data-m="25/5" aria-pressed="true">25 / 5</button>
+    <button data-m="50/10" aria-pressed="false">50 / 10</button>
+    <button data-m="90/15" aria-pressed="false">90 / 15</button>
+  </div>
+  <div class="row">
+    <button class="primary" id="start">Start</button>
+    <button id="reset">Reset</button>
+  </div>
+</section>
+
+<section class="card" aria-label="Sound">
+  <label for="sound">Sound</label>
+  <select id="sound">
+    <option value="qhIZ-wJyJq0">Deep brown noise</option>
+    <option value="Ullb6qeJtSc">Soft pink noise</option>
+    <option value="nrPbDPHxF08">432 Hz deep focus drone</option>
+    <option value="jzaUySg7YTM">Alpha waves, 10 Hz (headphones)</option>
+    <option value="5tKKN8-OhYM">40 Hz gamma pulses</option>
+    <option value="wGX7nuyG8d0">Airplane cabin</option>
+    <option value="QcP4ZCp4j_k">Ceiling fan</option>
+    <option value="bqiSagqf4Ss">Ocean waves</option>
+    <option value="FFKT6wUvN5k">528 Hz calm drone</option>
+  </select>
+  <div class="player"><iframe id="yt" title="Hush Focus Music player" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen
+    src="https://www.youtube-nocookie.com/embed/qhIZ-wJyJq0?rel=0&playsinline=1"></iframe></div>
+  <p style="margin:16px 0 0;color:var(--muted);font-size:15px">Press play on the video to start the sound. New sounds every day on
+  <a href="https://www.youtube.com/@HushFocusMusic?sub_confirmation=1">the Hush Focus Music channel</a>.</p>
+</section>
+
+<footer>
+  Hush Focus Music makes long, seamless sound for focus, study and sleep. All audio is our own.<br>
+  <a href="privacy.html">Privacy policy</a> &middot; <a href="https://www.youtube.com/@HushFocusMusic">YouTube</a>
+</footer>
+</main>
+<script>
+var modes={"25/5":[25,5],"50/10":[50,10],"90/15":[90,15]},mode="25/5",focus=true,left=25*60,tick=null;
+var clock=document.getElementById("clock"),phase=document.getElementById("phase"),start=document.getElementById("start");
+function show(){var m=Math.floor(left/60),s=left%60;clock.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+  phase.textContent=focus?"Focus":"Break";document.title=clock.textContent+" "+phase.textContent+" | Hush";}
+function set(){left=modes[mode][focus?0:1]*60;show();}
+function stop(){clearInterval(tick);tick=null;start.textContent="Start";}
+start.onclick=function(){if(tick){stop();return;}start.textContent="Pause";
+  tick=setInterval(function(){left--;if(left<=0){focus=!focus;set();}else show();},1000);};
+document.getElementById("reset").onclick=function(){stop();focus=true;set();};
+document.querySelectorAll("[data-m]").forEach(function(b){b.onclick=function(){mode=b.dataset.m;
+  document.querySelectorAll("[data-m]").forEach(function(x){x.setAttribute("aria-pressed",x===b);});stop();focus=true;set();};});
+document.getElementById("sound").onchange=function(e){
+  document.getElementById("yt").src="https://www.youtube-nocookie.com/embed/"+e.target.value+"?rel=0&playsinline=1";};
+</script>
+</body>
+</html>
